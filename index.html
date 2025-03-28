@@ -4,87 +4,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Selamat Idul Fitri</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: #add8e6;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-            position: relative;
-            transition: background 1s ease-in-out;
-        }
-        .container {
-            text-align: center;
-            color: white;
-            position: relative;
-            z-index: 2;
-            max-width: 80%;
-            display: none;
-        }
-        .envelope-container {
-            text-align: center;
-            position: relative;
-        }
-        .envelope {
-            width: 200px;
-            cursor: pointer;
-            transition: transform 0.5s ease-in-out;
-            animation: shake 0.5s infinite ease-in-out; /* Animasi goyang */
-        }
-        .envelope.open {
-            animation: none; /* Hentikan goyangan */
-            transform: translateY(-100px) rotateX(180deg);
-            opacity: 0;
-        }
-        .open-text {
-            font-size: 1.5em;
-            color: black;
-            margin-top: 10px;
-            animation: blink 1.5s infinite;
-        }
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-        @keyframes shake {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
-            75% { transform: rotate(-3deg); }
-        }
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #add8e6;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+        position: relative;
+        transition: background 1s ease-in-out;
+    }
+    .container {
+        text-align: center;
+        color: white;
+        position: relative;
+        z-index: 2;
+        max-width: 80%;
+        display: none;
+    }
+    .envelope-container {
+        text-align: center;
+        position: relative;
+    }
+    .envelope {
+        width: 200px;
+        cursor: pointer;
+        transition: transform 0.5s ease-in-out;
+        animation: shake 0.5s infinite ease-in-out; /* Animasi goyang */
+    }
+    .envelope.open {
+        animation: none; /* Hentikan goyangan */
+        transform: translateY(-100px) rotateX(180deg);
+        opacity: 0;
+    }
+    .open-text {
+        font-size: 1.5em;
+        color: black;
+        margin-top: 10px;
+        animation: blink 1.5s infinite;
+    }
+    @keyframes blink {
+        50% { opacity: 0; }
+    }
+    @keyframes shake {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(-5deg); }
+        50% { transform: rotate(5deg); }
+        75% { transform: rotate(-3deg); }
+    }
+    h1 {
+        font-size: 3.5em;
+        animation: fadeIn 3s ease-in-out;
+    }
+    p {
+        font-size: 1.5em;
+        animation: slideIn 3s ease-in-out;
+        line-height: 1.5;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    @keyframes slideIn {
+        from { transform: translateY(100px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+    .ketupat {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        animation: swing 3s ease-in-out infinite;
+    }
+    @keyframes swing {
+        0% { transform: rotate(0deg); }
+        50% { transform: rotate(10deg); }
+        100% { transform: rotate(0deg); }
+    }
+
+    /* Penyesuaian Responsif */
+    @media (max-width: 768px) {
         h1 {
-            font-size: 3.5em;
-            animation: fadeIn 3s ease-in-out;
+            font-size: 4em; /* Ukuran font lebih kecil untuk layar lebih kecil */
         }
         p {
-            font-size: 1.5em;
-            animation: slideIn 3s ease-in-out;
-            line-height: 1.5;
+            font-size: 1.2em; /* Ukuran font lebih kecil untuk layar lebih kecil */
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideIn {
-            from { transform: translateY(100px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        .envelope {
+            width: 150px; /* Memperkecil ukuran surat di layar kecil */
         }
         .ketupat {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            animation: swing 3s ease-in-out infinite;
+            width: 40px;
+            height: 40px;
         }
-        @keyframes swing {
-            0% { transform: rotate(0deg); }
-            50% { transform: rotate(10deg); }
-            100% { transform: rotate(0deg); }
+    }
+
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 3em; /* Ukuran font lebih kecil lagi untuk layar lebih kecil */
         }
-    </style>
+        p {
+            font-size: 1em; /* Ukuran font lebih kecil lagi untuk layar sangat kecil */
+        }
+        .envelope {
+            width: 120px; /* Memperkecil ukuran surat lebih kecil */
+        }
+        .ketupat {
+            width: 35px;
+            height: 35px;
+        }
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
+
 </head>
 <body id="body">
     <audio id="bg-music" autoplay loop>
