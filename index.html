@@ -74,15 +74,14 @@
         to { transform: translateY(0); opacity: 1; }
     }
     .ketupat {
-        position: absolute; /* Posisi absolut untuk mempermudah penataan */
+        position: absolute;
         width: 50px;
         height: 50px;
         animation: swing 3s ease-in-out infinite;
-        top: 50%; /* Menempatkan ketupat di tengah vertikal */
-        left: 50%; /* Menempatkan ketupat di tengah horizontal */
-        transform: translate(-50%, -50%); /* Menyesuaikan posisi ke tengah dengan menggeser posisi ketupat */
-}
-
+        top: 10%;  /* Posisikan ketupat sedikit ke bawah dari tengah atas */
+        left: 50%;  /* Posisikan ketupat di tengah layar secara horizontal */
+        transform: translateX(-50%);  /* Pindahkan ketupat ke tengah secara horizontal */
+    }
     @keyframes swing {
         0% { transform: rotate(0deg); }
         50% { transform: rotate(10deg); }
@@ -170,12 +169,10 @@
             let ketupat = document.createElement("img");
             ketupat.className = "ketupat";
             ketupat.src = "ketupat.jpg"; // Ganti dengan path gambar ketupat
-            // Mengatur posisi ketupat agar tetap di tengah
-            ketupat.style.left = "50%";  // Tetap di tengah secara horizontal
-            ketupat.style.top = "50%";   // Tetap di tengah secara vertikal
-            document.body.appendChild(ketupat);
+            document.body.appendChild(ketupat); // Posisi ketupat diatur oleh CSS
             }
         }
+
 
     </script>
 </body>
