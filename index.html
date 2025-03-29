@@ -4,164 +4,146 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Selamat Idul Fitri</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: #add8e6;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-            position: relative;
-            transition: background 1s ease-in-out;
-        }
-        .container {
-            text-align: center;
-            color: white;
-            position: relative;
-            z-index: 2;
-            max-width: 80%;
-            display: none;
-        }
-        .envelope-container {
-            text-align: center;
-            position: relative;
-        }
-        .envelope {
-            width: 200px;
-            cursor: pointer;
-            transition: transform 0.5s ease-in-out;
-            animation: shake 0.5s infinite ease-in-out;
-        }
-        .envelope.open {
-            animation: none;
-            transform: translateY(-100px) rotateX(180deg);
-            opacity: 0;
-        }
-        .open-text {
-            font-size: 1.5em;
-            color: black;
-            margin-top: 10px;
-            animation: blink 1.5s infinite;
-        }
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-        @keyframes shake {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
-            75% { transform: rotate(-3deg); }
-        }
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #add8e6;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+        position: relative;
+        transition: background 1s ease-in-out;
+    }
+    .container {
+        text-align: center;
+        color: white;
+        position: relative;
+        z-index: 2;
+        max-width: 80%;
+        display: none;
+    }
+    .envelope-container {
+        text-align: center;
+        position: relative;
+    }
+    .envelope {
+        width: 200px;
+        cursor: pointer;
+        transition: transform 0.5s ease-in-out;
+        animation: shake 0.5s infinite ease-in-out;
+    }
+    .envelope.open {
+        animation: none;
+        transform: translateY(-100px) rotateX(180deg);
+        opacity: 0;
+    }
+    .open-text {
+        font-size: 1.5em;
+        color: black;
+        margin-top: 10px;
+        animation: blink 1.5s infinite;
+    }
+    @keyframes blink {
+        50% { opacity: 0; }
+    }
+    @keyframes shake {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(-5deg); }
+        50% { transform: rotate(5deg); }
+        75% { transform: rotate(-3deg); }
+    }
+    h1 {
+        font-size: 3.5em;
+        animation: fadeIn 3s ease-in-out;
+    }
+    p {
+        font-size: 1.5em;
+        animation: slideIn 3s ease-in-out;
+        line-height: 1.5;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    @keyframes slideIn {
+        from { transform: translateY(100px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* KETUPAT KECIL DI TENGAH */
+    .ketupat-container {
+        position: fixed;
+        top: 15%;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        z-index: 1;
+        flex-wrap: wrap;
+    }
+    .ketupat {
+        width: 50px;
+        height: 50px;
+        animation: swing 3s ease-in-out infinite;
+        transform-origin: center top;
+    }
+    @keyframes swing {
+        0% { transform: rotate(0deg); }
+        50% { transform: rotate(8deg); }
+        100% { transform: rotate(0deg); }
+    }
+
+    /* PENYESUAIAN RESPONSIF */
+    @media (max-width: 768px) {
         h1 {
-            font-size: 3.5em;
-            animation: fadeIn 3s ease-in-out;
+            font-size: 2.5em;
         }
         p {
-            font-size: 1.5em;
-            animation: slideIn 3s ease-in-out;
-            line-height: 1.5;
+            font-size: 1.2em;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .envelope {
+            width: 150px;
         }
-        @keyframes slideIn {
-            from { transform: translateY(100px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        /* GAYA KETUPAT EKSTRA BESAR */
-        .ketupat-container {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 40px;
-            width: 90%;
-            max-width: 1000px;
-            z-index: 1;
-        }
-        
         .ketupat {
-            width: 150px; /* Ukuran sangat besar untuk desktop */
-            height: 150px;
-            animation: swing 3s ease-in-out infinite;
-            transform-origin: center top;
-            object-fit: contain;
-            transition: all 0.3s ease;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+            width: 40px;
+            height: 40px;
         }
-        
-        .ketupat:hover {
-            transform: scale(1.2);
-            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.4));
+        .ketupat-container {
+            gap: 10px;
+            top: 10%;
         }
-        
-        @keyframes swing {
-            0%, 100% { transform: rotate(-8deg); }
-            50% { transform: rotate(8deg); }
-        }
+    }
 
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 1024px) {
-            .ketupat {
-                width: 120px;
-                height: 120px;
-            }
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 2em;
         }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5em;
-            }
-            p {
-                font-size: 1.2em;
-            }
-            .envelope {
-                width: 150px;
-            }
-            .ketupat {
-                width: 100px;
-                height: 100px;
-            }
-            .ketupat-container {
-                gap: 30px;
-            }
+        p {
+            font-size: 1em;
         }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 2em;
-            }
-            p {
-                font-size: 1em;
-            }
-            .envelope {
-                width: 120px;
-            }
-            .ketupat {
-                width: 80px;
-                height: 80px;
-            }
-            .ketupat-container {
-                gap: 20px;
-                top: 40%;
-            }
+        .envelope {
+            width: 120px;
         }
-    </style>
+        .ketupat {
+            width: 30px;
+            height: 30px;
+        }
+        .ketupat-container {
+            gap: 8px;
+            top: 8%;
+        }
+    }
+</style>
 </head>
 <body id="body">
     <audio id="bg-music" autoplay loop>
         <source src="ramadan-happy-eid-celebration-301946.mp3" type="audio/mp3">
-        Browser tidak mendukung elemen audio.
+        Browsermu tidak mendukung elemen audio.
     </audio>
     
     <div class="envelope-container" id="envelopeContainer">
@@ -179,7 +161,6 @@
     
     <script>
         document.getElementById("bg-music").pause();
-        
         function openLetter() {
             let envelope = document.getElementById("envelope");
             envelope.classList.remove("shake");
@@ -196,20 +177,16 @@
         }
         
         function generateKetupat() {
-            // Hapus ketupat sebelumnya jika ada
-            const oldContainer = document.querySelector('.ketupat-container');
-            if (oldContainer) oldContainer.remove();
-            
-            // Buat container baru untuk ketupat
+            // Buat container untuk ketupat
             const container = document.createElement("div");
             container.className = "ketupat-container";
             
-            // Buat 5 ketupat besar
+            // Buat 5 ketupat kecil
             for (let i = 0; i < 5; i++) {
                 const ketupat = document.createElement("img");
                 ketupat.className = "ketupat";
                 ketupat.src = "ketupat.jpg";
-                ketupat.style.animationDelay = `${i * 0.3}s`;
+                ketupat.style.animationDelay = `${i * 0.2}s`;
                 container.appendChild(ketupat);
             }
             
