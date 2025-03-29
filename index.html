@@ -42,7 +42,6 @@
             display: none;
         }
         
-        /* PERBAIKAN UTAMA: JARAK SANGAT RAPAT */
         .envelope-container {
             display: flex;
             flex-direction: column;
@@ -57,7 +56,7 @@
             cursor: pointer;
             transition: transform 0.5s ease-in-out;
             animation: shake 0.5s infinite ease-in-out;
-            margin-bottom: 2px; /* JARAK SANGAT DEKAT */
+            margin-bottom: 2px;
         }
         
         .envelope.open {
@@ -66,7 +65,6 @@
             opacity: 0;
         }
         
-        /* TEKS DENGAN JARAK SANGAT RAPAT */
         .open-text {
             font-size: 1.8em;
             color: #ff3e3e;
@@ -76,8 +74,8 @@
                 pulse 0.8s infinite alternate,
                 colorChange 3s infinite;
             transform-origin: center;
-            margin-top: 2px; /* JARAK SANGAT DEKAT */
-            line-height: 1; /* MEMASTIKAN TIDAK ADA JARAK TAMBAHAN */
+            margin-top: 2px;
+            line-height: 1;
         }
 
         @keyframes pulse {
@@ -121,34 +119,48 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
+        /* FORMASI KETUPAT MELENGKUNG KE BAWAH YANG INDAH */
         .ketupat-container {
             position: fixed;
-            top: 15%;
+            top: 5%;
             left: 0;
             width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
+            height: 40%;
             z-index: 1;
-            flex-wrap: wrap;
         }
         
         .ketupat {
+            position: absolute;
             width: 100px;
             height: 100px;
             animation: swing 3s ease-in-out infinite;
             transform-origin: center top;
             object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+
+        /* Formasi melengkung indah */
+        .ketupat:nth-child(1) { left: 5%; top: 5%; animation-delay: 0.1s; }
+        .ketupat:nth-child(2) { left: 25%; top: 15%; animation-delay: 0.3s; }
+        .ketupat:nth-child(3) { left: 50%; top: 25%; transform: translateX(-50%); animation-delay: 0.5s; }
+        .ketupat:nth-child(4) { left: 75%; top: 15%; animation-delay: 0.7s; }
+        .ketupat:nth-child(5) { left: 95%; top: 5%; transform: translateX(-100%); animation-delay: 0.9s; }
+
+        @keyframes swing {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
         }
 
         @media (max-width: 768px) {
             .ketupat {
-                width: 60px;
-                height: 60px;
+                width: 80px;
+                height: 80px;
             }
-            .ketupat-container {
-                gap: 15px;
-            }
+            .ketupat:nth-child(1) { left: 3%; top: 8%; }
+            .ketupat:nth-child(2) { left: 23%; top: 18%; }
+            .ketupat:nth-child(3) { left: 50%; top: 28%; transform: translateX(-50%); }
+            .ketupat:nth-child(4) { left: 77%; top: 18%; }
+            .ketupat:nth-child(5) { left: 97%; top: 8%; transform: translateX(-100%); }
             
             h1 {
                 font-size: 2.5em;
@@ -168,10 +180,15 @@
         }
 
         @media (max-width: 480px) {
-            .ketupat-container {
-                gap: 10px;
-                top: 10%;
+            .ketupat {
+                width: 60px;
+                height: 60px;
             }
+            .ketupat:nth-child(1) { left: 0%; top: 10%; }
+            .ketupat:nth-child(2) { left: 20%; top: 20%; }
+            .ketupat:nth-child(3) { left: 50%; top: 30%; transform: translateX(-50%); }
+            .ketupat:nth-child(4) { left: 80%; top: 20%; }
+            .ketupat:nth-child(5) { left: 100%; top: 10%; transform: translateX(-100%); }
             
             h1 {
                 font-size: 2em;
@@ -188,12 +205,6 @@
             .open-text {
                 font-size: 1.3em;
             }
-        }
-        
-        @keyframes swing {
-            0% { transform: rotate(0deg); }
-            50% { transform: rotate(10deg); }
-            100% { transform: rotate(0deg); }
         }
     </style>
 </head>
@@ -257,7 +268,6 @@
                 const ketupat = document.createElement("img");
                 ketupat.className = "ketupat";
                 ketupat.src = "ketupat.jpg";
-                ketupat.style.animationDelay = `${i * 0.2}s`;
                 container.appendChild(ketupat);
             }
             
