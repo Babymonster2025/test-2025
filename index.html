@@ -4,141 +4,173 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Selamat Idul Fitri</title>
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background: #add8e6;
-        font-family: Arial, sans-serif;
-        overflow: hidden;
-        position: relative;
-        transition: background 1s ease-in-out;
-    }
-    .container {
-        text-align: center;
-        color: white;
-        position: relative;
-        z-index: 2;
-        max-width: 80%;
-        display: none;
-    }
-    .envelope-container {
-        text-align: center;
-        position: relative;
-    }
-    .envelope {
-        width: 200px;
-        cursor: pointer;
-        transition: transform 0.5s ease-in-out;
-        animation: shake 0.5s infinite ease-in-out; /* Animasi goyang */
-    }
-    .envelope.open {
-        animation: none; /* Hentikan goyangan */
-        transform: translateY(-100px) rotateX(180deg);
-        opacity: 0;
-    }
-    .open-text {
-        font-size: 1.5em;
-        color: black;
-        margin-top: 10px;
-        animation: blink 1.5s infinite;
-    }
-    @keyframes blink {
-        50% { opacity: 0; }
-    }
-    @keyframes shake {
-        0%, 100% { transform: rotate(0deg); }
-        25% { transform: rotate(-5deg); }
-        50% { transform: rotate(5deg); }
-        75% { transform: rotate(-3deg); }
-    }
-    h1 {
-        font-size: 3.5em;
-        animation: fadeIn 3s ease-in-out;
-    }
-    p {
-        font-size: 1.5em;
-        animation: slideIn 3s ease-in-out;
-        line-height: 1.5;
-    }
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-    @keyframes slideIn {
-        from { transform: translateY(100px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
-    }
-    .ketupat {
-        position: absolute;
-        width: 50px;
-        height: 50px;
-        animation: swing 3s ease-in-out infinite;
-        top: 10%;  /* Posisikan ketupat sedikit ke bawah dari tengah atas */
-        left: 50%;  /* Posisikan ketupat di tengah layar secara horizontal */
-        transform: translateX(-50%);  /* Pindahkan ketupat ke tengah secara horizontal */
-    }
-    @keyframes swing {
-        0% { transform: rotate(0deg); }
-        50% { transform: rotate(10deg); }
-        100% { transform: rotate(0deg); }
-    }
-
-    /* Penyesuaian Responsif */
-    @media (max-width: 768px) {
-        h1 {
-            font-size: 4em; /* Ukuran font lebih kecil untuk layar lebih kecil */
+    <style>
+        /* Gaya Dasar */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #add8e6; /* Warna biru muda */
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            position: relative;
+            transition: background 1s ease-in-out;
         }
-        p {
-            font-size: 1.2em; /* Ukuran font lebih kecil untuk layar lebih kecil */
+        
+        /* Container untuk pesan */
+        .container {
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
+            max-width: 80%;
+            display: none;
         }
+        
+        /* Gaya amplop */
+        .envelope-container {
+            text-align: center;
+            position: relative;
+        }
+        
         .envelope {
-            width: 150px; /* Memperkecil ukuran surat di layar kecil */
+            width: 200px;
+            cursor: pointer;
+            transition: transform 0.5s ease-in-out;
+            animation: goyang 0.5s infinite ease-in-out;
         }
-        .ketupat {
-            width: 40px;
-            height: 40px;
+        
+        .envelope.buka {
+            animation: none;
+            transform: translateY(-100px) rotateX(180deg);
+            opacity: 0;
         }
-    }
-
-    @media (max-width: 480px) {
+        
+        .open-text {
+            font-size: 1.5em;
+            color: black;
+            margin-top: 10px;
+            animation: kedip 1.5s infinite;
+        }
+        
+        /* Animasi */
+        @keyframes kedip {
+            50% { opacity: 0; }
+        }
+        
+        @keyframes goyang {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+            75% { transform: rotate(-3deg); }
+        }
+        
+        /* Gaya teks */
         h1 {
-            font-size: 3em; /* Ukuran font lebih kecil lagi untuk layar lebih kecil */
+            font-size: 3.5em;
+            animation: munculPelan 3s ease-in-out;
         }
+        
         p {
-            font-size: 1em; /* Ukuran font lebih kecil lagi untuk layar sangat kecil */
+            font-size: 1.5em;
+            animation: geserMuncul 3s ease-in-out;
+            line-height: 1.5;
         }
-        .envelope {
-            width: 120px; /* Memperkecil ukuran surat lebih kecil */
+        
+        @keyframes munculPelan {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
+        
+        @keyframes geserMuncul {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* Gaya ketupat - PERBAIKAN UTAMA */
+        .wadah-ketupat {
+            position: fixed;
+            top: 15%;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1;
+        }
+        
         .ketupat {
-            width: 35px;
-            height: 35px;
+            width: 50px;
+            height: 50px;
+            animation: ayun 3s ease-in-out infinite;
+            transform-origin: center top; /* Titik putar animasi */
         }
-    }
-
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-</style>
-
+        
+        @keyframes ayun {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(10deg); }
+            100% { transform: rotate(0deg); }
+        }
+        
+        /* Penyesuaian untuk HP */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            p {
+                font-size: 1.2em;
+            }
+            .envelope {
+                width: 150px;
+            }
+            .wadah-ketupat {
+                top: 10%;
+                gap: 15px;
+            }
+            .ketupat {
+                width: 40px;
+                height: 40px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .envelope {
+                width: 120px;
+            }
+            .wadah-ketupat {
+                top: 8%;
+                gap: 10px;
+            }
+            .ketupat {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    </style>
 </head>
 <body id="body">
+    <!-- Musik latar -->
     <audio id="bg-music" autoplay loop>
         <source src="ramadan-happy-eid-celebration-301946.mp3" type="audio/mp3">
-        Browsermu tidak mendukung elemen audio.
+        Browser tidak mendukung audio
     </audio>
     
+    <!-- Bagian amplop -->
     <div class="envelope-container" id="envelopeContainer">
-        <img src="surat.jpg" class="envelope" id="envelope" onclick="openLetter()" alt="Surat">
+        <img src="surat.jpg" class="envelope" id="envelope" onclick="bukaSurat()" alt="Surat">
         <p class="open-text">SAYA MARAHHH NIII😁</p>
     </div>
     
+    <!-- Pesan Lebaran -->
     <div class="container" id="messageContainer">
         <h1>Selamat Idul Fitri</h1>
         <p>Minta THR nya dongggg😁<br>
@@ -148,33 +180,47 @@
     </div>
     
     <script>
+        // Jeda musik awal
         document.getElementById("bg-music").pause();
-        function openLetter() {
-            let envelope = document.getElementById("envelope");
-            envelope.classList.remove("shake"); // Hentikan animasi goyang
-            envelope.classList.add("open"); // Tambahkan efek buka
-
+        
+        // Fungsi buka surat
+        function bukaSurat() {
+            let amplop = document.getElementById("envelope");
+            amplop.classList.remove("goyang");
+            amplop.classList.add("buka");
+            
+            // Setelah animasi buka selesai
             setTimeout(() => {
                 document.getElementById("envelopeContainer").style.display = "none";
                 document.getElementById("messageContainer").style.display = "block";
                 document.getElementById("bg-music").play();
                 document.getElementById("body").style.background = 
                     "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('gambar lebaran.jpg') no-repeat center center fixed";
-                generateKetupat();
+                buatKetupat();
             }, 500);
         }
         
-    function generateKetupat() {
-        for (let i = 2; i < 5; i++) {  // Menambahkan 5 ketupat
-            let ketupat = document.createElement("img");
-            ketupat.className = "ketupat";
-            ketupat.src = "ketupat.jpg"; // Ganti dengan path gambar ketupat
-            ketupat.style.left = (50 + (i * 10)) + "%"; // Menambahkan offset horizontal
-            document.body.appendChild(ketupat); // Tambahkan ketupat ke body
+        // Fungsi membuat ketupat
+        function buatKetupat() {
+            // Buat wadah untuk ketupat
+            const wadah = document.createElement("div");
+            wadah.className = "wadah-ketupat";
+            
+            // Jumlah ketupat yang akan dibuat
+            const jumlah = 5;
+            
+            // Buat ketupat satu per satu
+            for (let i = 0; i < jumlah; i++) {
+                const ketupat = document.createElement("img");
+                ketupat.className = "ketupat";
+                ketupat.src = "ketupat.jpg";
+                ketupat.style.animationDelay = `${i * 0.2}s`; // Animasi berurutan
+                wadah.appendChild(ketupat);
             }
+            
+            // Tambahkan ke body
+            document.body.appendChild(wadah);
         }
-
-
     </script>
 </body>
 </html>
