@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Selamat Idul Fitri</title>
-    <!-- Tambahkan font lucu dari Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Indie+Flower&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -14,7 +12,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: #add8e6;
+            background: #add8e6; /* Warna default sebelum diklik */
             font-family: Arial, sans-serif;
             overflow: hidden;
             position: relative;
@@ -28,10 +26,12 @@
             background-repeat: no-repeat;
         }
         
+        /* Background untuk laptop */
         body.lebaran-bg.laptop {
             background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('gambar-lebaran-laptop.jpg');
         }
         
+        /* Background untuk mobile */
         body.lebaran-bg.mobile {
             background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('gambar-lebaran-mobile.jpg');
         }
@@ -59,56 +59,171 @@
             transform: translateY(-100px) rotateX(180deg);
             opacity: 0;
         }
-        
-        /* Gaya font lucu untuk teks "SAYA MARAHHH NIII😁" */
         .open-text {
-            font-size: 1.8em;
-            color: #ff3366; /* Warna pink */
-            margin-top: 15px;
-            animation: blink 1.5s infinite, bounce 0.5s infinite alternate;
-            font-family: 'Comic Neue', cursive;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            font-size: 1.5em;
+            color: black;
+            margin-top: 10px;
+            animation: blink 1.5s infinite;
         }
-        
         @keyframes blink {
-            50% { opacity: 0.7; }
+            50% { opacity: 0; }
         }
-        
-        @keyframes bounce {
-            from { transform: translateY(0); }
-            to { transform: translateY(-5px); }
-        }
-
         @keyframes shake {
             0%, 100% { transform: rotate(0deg); }
             25% { transform: rotate(-5deg); }
             50% { transform: rotate(5deg); }
             75% { transform: rotate(-3deg); }
         }
-        
         h1 {
             font-size: 3.5em;
             animation: fadeIn 3s ease-in-out;
-            font-family: 'Indie Flower', cursive;
         }
-        
         p {
             font-size: 1.5em;
             animation: slideIn 3s ease-in-out;
             line-height: 1.5;
-            font-family: 'Indie Flower', cursive;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
-        /* ... (bagian CSS lainnya tetap sama) ... */
+        /* KETUPAT SIZE */
+        .ketupat-container {
+            position: fixed;
+            top: 15%;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1;
+            flex-wrap: wrap;
+        }
+        .ketupat {
+            width: 100px; /* Default laptop size */
+            height: 100px;
+            animation: swing 3s ease-in-out infinite;
+            transform-origin: center top;
+            object-fit: contain;
+        }
+
+        /* Mobile devices */
+        @media (max-width: 768px) {
+            .ketupat {
+                width: 60px;
+                height: 60px;
+            }
+            .ketupat-container {
+                gap: 15px;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+            }
+            p {
+                font-size: 1.2em;
+            }
+            .envelope {
+                width: 150px;
+            }
+        }
+
+        /* Very small devices */
+        @media (max-width: 480px) {
+            .ketupat-container {
+                gap: 10px;
+                top: 10%;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .envelope {
+                width: 120px;
+            }
+        }
         
+        @keyframes swing {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(10deg); }
+            100% { transform: rotate(0deg); }
+        }
     </style>
 </head>
 <body id="body">
-    <!-- ... (bagian HTML lainnya tetap sama) ... -->
+    <audio id="bg-music" autoplay loop>
+        <source src="ramadan-happy-eid-celebration-301946.mp3" type="audio/mp3">
+        Browsermu tidak mendukung elemen audio.
+    </audio>
+    
+    <div class="envelope-container" id="envelopeContainer">
+        <img src="surat.jpg" class="envelope" id="envelope" onclick="openLetter()" alt="Surat">
+        <p class="open-text">SAYA MARAHHH NIII😁</p>
+    </div>
+    
+    <div class="container" id="messageContainer">
+        <h1>Selamat Idul Fitri</h1>
+        <p>Minta THR nya dongggg😁<br>
+        Ingpokan perholiday an. <br>
+        Cihuyyyyy. <br>
+        Selamat Idul Fitri!</p>
+    </div>
     
     <script>
-        // ... (bagian JavaScript tetap sama) ...
+        document.getElementById("bg-music").pause();
+        
+        function setBackground() {
+            const body = document.getElementById("body");
+            body.classList.add("lebaran-bg");
+            
+            if (window.innerWidth >= 768) {
+                body.classList.add("laptop");
+                body.classList.remove("mobile");
+            } else {
+                body.classList.add("mobile");
+                body.classList.remove("laptop");
+            }
+        }
+        
+        function openLetter() {
+            let envelope = document.getElementById("envelope");
+            envelope.classList.remove("shake");
+            envelope.classList.add("open");
+
+            setTimeout(() => {
+                document.getElementById("envelopeContainer").style.display = "none";
+                document.getElementById("messageContainer").style.display = "block";
+                document.getElementById("bg-music").play();
+                setBackground(); // Menampilkan background setelah diklik
+                generateKetupat();
+            }, 500);
+        }
+        
+        function generateKetupat() {
+            const oldContainer = document.querySelector('.ketupat-container');
+            if (oldContainer) oldContainer.remove();
+            
+            const container = document.createElement("div");
+            container.className = "ketupat-container";
+            
+            for (let i = 0; i < 5; i++) {
+                const ketupat = document.createElement("img");
+                ketupat.className = "ketupat";
+                ketupat.src = "ketupat.jpg";
+                ketupat.style.animationDelay = `${i * 0.2}s`;
+                container.appendChild(ketupat);
+            }
+            
+            document.body.appendChild(container);
+        }
     </script>
 </body>
 </html>
