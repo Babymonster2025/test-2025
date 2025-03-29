@@ -12,22 +12,27 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background: #add8e6; /* Warna default sebelum diklik */
             font-family: Arial, sans-serif;
             overflow: hidden;
             position: relative;
             transition: background 1s ease-in-out;
+        }
+        
+        /* Background setelah diklik */
+        body.lebaran-bg {
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
         
         /* Background untuk laptop */
-        body.laptop-bg {
+        body.lebaran-bg.laptop {
             background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('gambar-lebaran-laptop.jpg');
         }
         
         /* Background untuk mobile */
-        body.mobile-bg {
+        body.lebaran-bg.mobile {
             background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('gambar-lebaran-mobile.jpg');
         }
 
@@ -173,23 +178,21 @@
     </div>
     
     <script>
-        // Fungsi untuk set background sesuai device
+        document.getElementById("bg-music").pause();
+        
         function setBackground() {
             const body = document.getElementById("body");
+            body.classList.add("lebaran-bg");
+            
             if (window.innerWidth >= 768) {
-                body.classList.add("laptop-bg");
-                body.classList.remove("mobile-bg");
+                body.classList.add("laptop");
+                body.classList.remove("mobile");
             } else {
-                body.classList.add("mobile-bg");
-                body.classList.remove("laptop-bg");
+                body.classList.add("mobile");
+                body.classList.remove("laptop");
             }
         }
         
-        // Panggil saat load dan resize
-        window.addEventListener('load', setBackground);
-        window.addEventListener('resize', setBackground);
-        
-        document.getElementById("bg-music").pause();
         function openLetter() {
             let envelope = document.getElementById("envelope");
             envelope.classList.remove("shake");
@@ -199,7 +202,7 @@
                 document.getElementById("envelopeContainer").style.display = "none";
                 document.getElementById("messageContainer").style.display = "block";
                 document.getElementById("bg-music").play();
-                setBackground(); // Update background
+                setBackground(); // Menampilkan background setelah diklik
                 generateKetupat();
             }, 500);
         }
