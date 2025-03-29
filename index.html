@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Selamat Idul Fitri</title>
     <style>
-        /* Gaya Dasar */
         body {
             margin: 0;
             padding: 0;
@@ -13,14 +12,12 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: #add8e6; /* Warna biru muda */
+            background: #add8e6;
             font-family: Arial, sans-serif;
             overflow: hidden;
             position: relative;
             transition: background 1s ease-in-out;
         }
-        
-        /* Container untuk pesan */
         .container {
             text-align: center;
             color: white;
@@ -29,93 +26,82 @@
             max-width: 80%;
             display: none;
         }
-        
-        /* Gaya amplop */
         .envelope-container {
             text-align: center;
             position: relative;
         }
-        
         .envelope {
             width: 200px;
             cursor: pointer;
             transition: transform 0.5s ease-in-out;
-            animation: goyang 0.5s infinite ease-in-out;
+            animation: shake 0.5s infinite ease-in-out;
         }
-        
-        .envelope.buka {
+        .envelope.open {
             animation: none;
             transform: translateY(-100px) rotateX(180deg);
             opacity: 0;
         }
-        
         .open-text {
             font-size: 1.5em;
             color: black;
             margin-top: 10px;
-            animation: kedip 1.5s infinite;
+            animation: blink 1.5s infinite;
         }
-        
-        /* Animasi */
-        @keyframes kedip {
+        @keyframes blink {
             50% { opacity: 0; }
         }
-        
-        @keyframes goyang {
+        @keyframes shake {
             0%, 100% { transform: rotate(0deg); }
             25% { transform: rotate(-5deg); }
             50% { transform: rotate(5deg); }
             75% { transform: rotate(-3deg); }
         }
-        
-        /* Gaya teks */
         h1 {
             font-size: 3.5em;
-            animation: munculPelan 3s ease-in-out;
+            animation: fadeIn 3s ease-in-out;
         }
-        
         p {
             font-size: 1.5em;
-            animation: geserMuncul 3s ease-in-out;
+            animation: slideIn 3s ease-in-out;
             line-height: 1.5;
         }
-        
-        @keyframes munculPelan {
+        @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        
-        @keyframes geserMuncul {
+        @keyframes slideIn {
             from { transform: translateY(100px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-        
-        /* Gaya ketupat - PERBAIKAN UTAMA */
-        .wadah-ketupat {
+
+        /* Gaya ketupat yang diperbesar */
+        .ketupat-container {
             position: fixed;
             top: 15%;
             left: 0;
             width: 100%;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 30px;
             z-index: 1;
         }
-        
         .ketupat {
-            width: 50px;
-            height: 50px;
-            animation: ayun 3s ease-in-out infinite;
-            transform-origin: center top; /* Titik putar animasi */
+            width: 100px;  /* Ukuran diperbesar */
+            height: 100px; /* Ukuran diperbesar */
+            animation: swing 3s ease-in-out infinite;
+            transform-origin: center top;
+            object-fit: contain;
+            transition: all 0.3s ease;
         }
-        
-        @keyframes ayun {
-            0% { transform: rotate(0deg); }
-            50% { transform: rotate(10deg); }
-            100% { transform: rotate(0deg); }
+        .ketupat:hover {
+            transform: scale(1.1) rotate(10deg);
         }
-        
-        /* Penyesuaian untuk HP */
+        @keyframes swing {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        /* Responsive design */
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5em;
@@ -126,16 +112,16 @@
             .envelope {
                 width: 150px;
             }
-            .wadah-ketupat {
+            .ketupat-container {
                 top: 10%;
-                gap: 15px;
+                gap: 20px;
             }
             .ketupat {
-                width: 40px;
-                height: 40px;
+                width: 80px;
+                height: 80px;
             }
         }
-        
+
         @media (max-width: 480px) {
             h1 {
                 font-size: 2em;
@@ -146,31 +132,28 @@
             .envelope {
                 width: 120px;
             }
-            .wadah-ketupat {
+            .ketupat-container {
                 top: 8%;
-                gap: 10px;
+                gap: 15px;
             }
             .ketupat {
-                width: 30px;
-                height: 30px;
+                width: 60px;
+                height: 60px;
             }
         }
     </style>
 </head>
 <body id="body">
-    <!-- Musik latar -->
     <audio id="bg-music" autoplay loop>
         <source src="ramadan-happy-eid-celebration-301946.mp3" type="audio/mp3">
-        Browser tidak mendukung audio
+        Browser tidak mendukung elemen audio.
     </audio>
     
-    <!-- Bagian amplop -->
     <div class="envelope-container" id="envelopeContainer">
-        <img src="surat.jpg" class="envelope" id="envelope" onclick="bukaSurat()" alt="Surat">
+        <img src="surat.jpg" class="envelope" id="envelope" onclick="openLetter()" alt="Surat">
         <p class="open-text">SAYA MARAHHH NIII😁</p>
     </div>
     
-    <!-- Pesan Lebaran -->
     <div class="container" id="messageContainer">
         <h1>Selamat Idul Fitri</h1>
         <p>Minta THR nya dongggg😁<br>
@@ -180,46 +163,42 @@
     </div>
     
     <script>
-        // Jeda musik awal
         document.getElementById("bg-music").pause();
         
-        // Fungsi buka surat
-        function bukaSurat() {
-            let amplop = document.getElementById("envelope");
-            amplop.classList.remove("goyang");
-            amplop.classList.add("buka");
-            
-            // Setelah animasi buka selesai
+        function openLetter() {
+            let envelope = document.getElementById("envelope");
+            envelope.classList.remove("shake");
+            envelope.classList.add("open");
+
             setTimeout(() => {
                 document.getElementById("envelopeContainer").style.display = "none";
                 document.getElementById("messageContainer").style.display = "block";
                 document.getElementById("bg-music").play();
                 document.getElementById("body").style.background = 
                     "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('gambar lebaran.jpg') no-repeat center center fixed";
-                buatKetupat();
+                generateKetupat();
             }, 500);
         }
         
-        // Fungsi membuat ketupat
-        function buatKetupat() {
-            // Buat wadah untuk ketupat
-            const wadah = document.createElement("div");
-            wadah.className = "wadah-ketupat";
+        function generateKetupat() {
+            // Hapus ketupat sebelumnya jika ada
+            const oldContainer = document.querySelector('.ketupat-container');
+            if (oldContainer) oldContainer.remove();
             
-            // Jumlah ketupat yang akan dibuat
-            const jumlah = 5;
+            // Buat container baru untuk ketupat
+            const container = document.createElement("div");
+            container.className = "ketupat-container";
             
-            // Buat ketupat satu per satu
-            for (let i = 0; i < jumlah; i++) {
+            // Buat 5 ketupat
+            for (let i = 0; i < 5; i++) {
                 const ketupat = document.createElement("img");
                 ketupat.className = "ketupat";
                 ketupat.src = "ketupat.jpg";
-                ketupat.style.animationDelay = `${i * 0.2}s`; // Animasi berurutan
-                wadah.appendChild(ketupat);
+                ketupat.style.animationDelay = `${i * 0.2}s`;
+                container.appendChild(ketupat);
             }
             
-            // Tambahkan ke body
-            document.body.appendChild(wadah);
+            document.body.appendChild(container);
         }
     </script>
 </body>
