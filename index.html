@@ -165,11 +165,11 @@
         }
         
     function generateKetupat() {
-        for (let i = 2; i < 3; i++) {  // Menambahkan 5 ketupat
+        for (let i = 2; i < 5; i++) {  // Menambahkan 5 ketupat
             let ketupat = document.createElement("img");
             ketupat.className = "ketupat";
             ketupat.src = "ketupat.jpg"; // Ganti dengan path gambar ketupat
-            ketupat.style.left = (20 + (i * 0)) + "%"; // Menambahkan offset horizontal
+            ketupat.style.left = (20 + (i * 20)) + "%"; // Menambahkan offset horizontal
             document.body.appendChild(ketupat); // Tambahkan ketupat ke body
             }
         }
