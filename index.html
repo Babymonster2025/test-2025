@@ -74,34 +74,50 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
-        /* Gaya ketupat yang diperbesar */
+        /* GAYA KETUPAT EKSTRA BESAR */
         .ketupat-container {
             position: fixed;
-            top: 15%;
-            left: 0;
-            width: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             display: flex;
             justify-content: center;
-            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            width: 90%;
+            max-width: 1000px;
             z-index: 1;
         }
+        
         .ketupat {
-            width: 100px;  /* Ukuran diperbesar */
-            height: 100px; /* Ukuran diperbesar */
+            width: 150px; /* Ukuran sangat besar untuk desktop */
+            height: 150px;
             animation: swing 3s ease-in-out infinite;
             transform-origin: center top;
             object-fit: contain;
             transition: all 0.3s ease;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
         }
+        
         .ketupat:hover {
-            transform: scale(1.1) rotate(10deg);
+            transform: scale(1.2);
+            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.4));
         }
+        
         @keyframes swing {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
+            0%, 100% { transform: rotate(-8deg); }
+            50% { transform: rotate(8deg); }
         }
 
-        /* Responsive design */
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1024px) {
+            .ketupat {
+                width: 120px;
+                height: 120px;
+            }
+        }
+        
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5em;
@@ -112,13 +128,12 @@
             .envelope {
                 width: 150px;
             }
-            .ketupat-container {
-                top: 10%;
-                gap: 20px;
-            }
             .ketupat {
-                width: 80px;
-                height: 80px;
+                width: 100px;
+                height: 100px;
+            }
+            .ketupat-container {
+                gap: 30px;
             }
         }
 
@@ -132,13 +147,13 @@
             .envelope {
                 width: 120px;
             }
-            .ketupat-container {
-                top: 8%;
-                gap: 15px;
-            }
             .ketupat {
-                width: 60px;
-                height: 60px;
+                width: 80px;
+                height: 80px;
+            }
+            .ketupat-container {
+                gap: 20px;
+                top: 40%;
             }
         }
     </style>
@@ -189,12 +204,12 @@
             const container = document.createElement("div");
             container.className = "ketupat-container";
             
-            // Buat 5 ketupat
+            // Buat 5 ketupat besar
             for (let i = 0; i < 5; i++) {
                 const ketupat = document.createElement("img");
                 ketupat.className = "ketupat";
                 ketupat.src = "ketupat.jpg";
-                ketupat.style.animationDelay = `${i * 0.2}s`;
+                ketupat.style.animationDelay = `${i * 0.3}s`;
                 container.appendChild(ketupat);
             }
             
