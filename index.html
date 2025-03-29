@@ -42,7 +42,7 @@
             display: none;
         }
         
-        /* PERBAIKAN UTAMA: JARAK LEBIH RAPAT */
+        /* PERBAIKAN UTAMA: JARAK SANGAT RAPAT */
         .envelope-container {
             display: flex;
             flex-direction: column;
@@ -57,7 +57,7 @@
             cursor: pointer;
             transition: transform 0.5s ease-in-out;
             animation: shake 0.5s infinite ease-in-out;
-            margin-bottom: 5px; /* JARAK DIPERKECIL */
+            margin-bottom: 2px; /* JARAK SANGAT DEKAT */
         }
         
         .envelope.open {
@@ -66,7 +66,7 @@
             opacity: 0;
         }
         
-        /* TEKS DENGAN JARAK LEBIH RAPAT */
+        /* TEKS DENGAN JARAK SANGAT RAPAT */
         .open-text {
             font-size: 1.8em;
             color: #ff3e3e;
@@ -76,7 +76,8 @@
                 pulse 0.8s infinite alternate,
                 colorChange 3s infinite;
             transform-origin: center;
-            margin-top: 5px; /* JARAK DIPERKECIL */
+            margin-top: 2px; /* JARAK SANGAT DEKAT */
+            line-height: 1; /* MEMASTIKAN TIDAK ADA JARAK TAMBAHAN */
         }
 
         @keyframes pulse {
