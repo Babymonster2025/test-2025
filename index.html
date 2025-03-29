@@ -74,7 +74,7 @@
         to { transform: translateY(0); opacity: 1; }
     }
 
-    /* KETUPAT KECIL DI TENGAH */
+    /* KETUPAT SIZE ADJUSTMENT */
     .ketupat-container {
         position: fixed;
         top: 15%;
@@ -82,24 +82,29 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        gap: 15px;
+        gap: 20px;
         z-index: 1;
         flex-wrap: wrap;
     }
     .ketupat {
-        width: 50px;
-        height: 50px;
+        width: 100px; /* Default size for laptop */
+        height: 100px;
         animation: swing 3s ease-in-out infinite;
         transform-origin: center top;
-    }
-    @keyframes swing {
-        0% { transform: rotate(0deg); }
-        50% { transform: rotate(8deg); }
-        100% { transform: rotate(0deg); }
+        object-fit: contain;
     }
 
-    /* PENYESUAIAN RESPONSIF */
+    /* Mobile devices */
     @media (max-width: 768px) {
+        .ketupat {
+            width: 60px;
+            height: 60px;
+        }
+        .ketupat-container {
+            gap: 15px;
+        }
+        
+        /* Other mobile adjustments */
         h1 {
             font-size: 2.5em;
         }
@@ -109,17 +114,15 @@
         .envelope {
             width: 150px;
         }
-        .ketupat {
-            width: 40px;
-            height: 40px;
-        }
+    }
+
+    /* Very small devices */
+    @media (max-width: 480px) {
         .ketupat-container {
             gap: 10px;
             top: 10%;
         }
-    }
-
-    @media (max-width: 480px) {
+        
         h1 {
             font-size: 2em;
         }
@@ -129,14 +132,12 @@
         .envelope {
             width: 120px;
         }
-        .ketupat {
-            width: 30px;
-            height: 30px;
-        }
-        .ketupat-container {
-            gap: 8px;
-            top: 8%;
-        }
+    }
+    
+    @keyframes swing {
+        0% { transform: rotate(0deg); }
+        50% { transform: rotate(10deg); }
+        100% { transform: rotate(0deg); }
     }
 </style>
 </head>
@@ -177,11 +178,15 @@
         }
         
         function generateKetupat() {
-            // Buat container untuk ketupat
+            // Hapus ketupat sebelumnya jika ada
+            const oldContainer = document.querySelector('.ketupat-container');
+            if (oldContainer) oldContainer.remove();
+            
+            // Buat container baru untuk ketupat
             const container = document.createElement("div");
             container.className = "ketupat-container";
             
-            // Buat 5 ketupat kecil
+            // Buat 5 ketupat
             for (let i = 0; i < 5; i++) {
                 const ketupat = document.createElement("img");
                 ketupat.className = "ketupat";
