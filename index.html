@@ -12,26 +12,23 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: #add8e6; /* Warna default sebelum diklik */
+            background: #add8e6;
             font-family: Arial, sans-serif;
             overflow: hidden;
             position: relative;
             transition: background 1s ease-in-out;
         }
         
-        /* Background setelah diklik */
         body.lebaran-bg {
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
         
-        /* Background untuk laptop */
         body.lebaran-bg.laptop {
             background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('gambar-lebaran-laptop.jpg');
         }
         
-        /* Background untuk mobile */
         body.lebaran-bg.mobile {
             background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('gambar-lebaran-mobile.jpg');
         }
@@ -44,55 +41,84 @@
             max-width: 80%;
             display: none;
         }
+        
+        /* PERBAIKAN UTAMA: TATA LETAK ENVELOPE DAN TEXT */
         .envelope-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
             position: relative;
         }
+        
         .envelope {
             width: 200px;
             cursor: pointer;
             transition: transform 0.5s ease-in-out;
             animation: shake 0.5s infinite ease-in-out;
+            margin-bottom: 15px; /* Jarak antara amplop dan teks */
         }
+        
         .envelope.open {
             animation: none;
             transform: translateY(-100px) rotateX(180deg);
             opacity: 0;
         }
+        
+        /* TEKS "SAYA MARAHHH NIII😁" */
         .open-text {
-            font-size: 1.5em;
-            color: black;
-            margin-top: 10px;
-            animation: blink 1.5s infinite;
+            font-size: 1.8em;
+            color: #ff3e3e;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: 
+                pulse 0.8s infinite alternate,
+                colorChange 3s infinite;
+            transform-origin: center;
         }
-        @keyframes blink {
-            50% { opacity: 0; }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
         }
+        
+        @keyframes colorChange {
+            0% { color: #ff3e3e; }
+            25% { color: #ff6b6b; }
+            50% { color: #ff9e3e; }
+            75% { color: #ff6b6b; }
+            100% { color: #ff3e3e; }
+        }
+
         @keyframes shake {
             0%, 100% { transform: rotate(0deg); }
             25% { transform: rotate(-5deg); }
             50% { transform: rotate(5deg); }
             75% { transform: rotate(-3deg); }
         }
+        
         h1 {
             font-size: 3.5em;
             animation: fadeIn 3s ease-in-out;
         }
+        
         p {
             font-size: 1.5em;
             animation: slideIn 3s ease-in-out;
             line-height: 1.5;
         }
+        
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        
         @keyframes slideIn {
             from { transform: translateY(100px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
 
-        /* KETUPAT SIZE */
         .ketupat-container {
             position: fixed;
             top: 15%;
@@ -104,15 +130,15 @@
             z-index: 1;
             flex-wrap: wrap;
         }
+        
         .ketupat {
-            width: 100px; /* Default laptop size */
+            width: 100px;
             height: 100px;
             animation: swing 3s ease-in-out infinite;
             transform-origin: center top;
             object-fit: contain;
         }
 
-        /* Mobile devices */
         @media (max-width: 768px) {
             .ketupat {
                 width: 60px;
@@ -125,15 +151,20 @@
             h1 {
                 font-size: 2.5em;
             }
+            
             p {
                 font-size: 1.2em;
             }
+            
             .envelope {
                 width: 150px;
             }
+            
+            .open-text {
+                font-size: 1.5em;
+            }
         }
 
-        /* Very small devices */
         @media (max-width: 480px) {
             .ketupat-container {
                 gap: 10px;
@@ -143,11 +174,17 @@
             h1 {
                 font-size: 2em;
             }
+            
             p {
                 font-size: 1em;
             }
+            
             .envelope {
                 width: 120px;
+            }
+            
+            .open-text {
+                font-size: 1.3em;
             }
         }
         
@@ -202,7 +239,7 @@
                 document.getElementById("envelopeContainer").style.display = "none";
                 document.getElementById("messageContainer").style.display = "block";
                 document.getElementById("bg-music").play();
-                setBackground(); // Menampilkan background setelah diklik
+                setBackground();
                 generateKetupat();
             }, 500);
         }
