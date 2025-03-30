@@ -119,18 +119,21 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
-        /* FORMASI KETUPAT DENGAN KETUPAT 3 DI TENGAH */
+        /* FORMASI KETUPAT YANG SUDAH DIPERBAIKI */
         .ketupat-container {
             position: fixed;
-            top: 5%;
+            top: 10%;
             left: 0;
             width: 100%;
-            height: 40%;
+            height: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             z-index: 1;
+            gap: 40px;
         }
         
         .ketupat {
-            position: absolute;
             width: 100px;
             height: 100px;
             animation: swing 3s ease-in-out infinite;
@@ -139,28 +142,35 @@
             filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
         }
 
-        /* Posisi ketupat dengan ketupat 3 di tengah sempurna */
-        .ketupat:nth-child(1) { left: 10%; top: 10%; animation-delay: 0.1s; }
-        .ketupat:nth-child(2) { left: 30%; top: 15%; animation-delay: 0.3s; }
-        .ketupat:nth-child(3) { left: 50%; top: 20%; transform: translateX(-50%); animation-delay: 0.5s; }
-        .ketupat:nth-child(4) { left: 70%; top: 15%; animation-delay: 0.7s; }
-        .ketupat:nth-child(5) { left: 90%; top: 10%; transform: translateX(-100%); animation-delay: 0.9s; }
+        /* Animasi untuk masing-masing ketupat */
+        .ketupat:nth-child(1) { animation-delay: 0.1s; }
+        .ketupat:nth-child(2) { animation-delay: 0.3s; }
+        .ketupat:nth-child(3) { 
+            width: 120px;
+            height: 120px;
+            animation-delay: 0s; 
+        }
+        .ketupat:nth-child(4) { animation-delay: 0.7s; }
+        .ketupat:nth-child(5) { animation-delay: 0.9s; }
 
         @keyframes swing {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
+            0%, 100% { transform: rotate(-8deg) translateY(0); }
+            50% { transform: rotate(8deg) translateY(-10px); }
         }
 
         @media (max-width: 768px) {
             .ketupat {
-                width: 80px;
-                height: 80px;
+                width: 70px;
+                height: 70px;
             }
-            .ketupat:nth-child(1) { left: 5%; top: 12%; }
-            .ketupat:nth-child(2) { left: 25%; top: 16%; }
-            .ketupat:nth-child(3) { left: 50%; top: 20%; transform: translateX(-50%); }
-            .ketupat:nth-child(4) { left: 75%; top: 16%; }
-            .ketupat:nth-child(5) { left: 95%; top: 12%; transform: translateX(-100%); }
+            .ketupat:nth-child(3) {
+                width: 90px;
+                height: 90px;
+            }
+            .ketupat-container {
+                gap: 20px;
+                top: 5%;
+            }
             
             h1 {
                 font-size: 2.5em;
@@ -181,14 +191,17 @@
 
         @media (max-width: 480px) {
             .ketupat {
-                width: 60px;
-                height: 60px;
+                width: 50px;
+                height: 50px;
             }
-            .ketupat:nth-child(1) { left: 0%; top: 15%; }
-            .ketupat:nth-child(2) { left: 20%; top: 18%; }
-            .ketupat:nth-child(3) { left: 50%; top: 22%; transform: translateX(-50%); }
-            .ketupat:nth-child(4) { left: 80%; top: 18%; }
-            .ketupat:nth-child(5) { left: 100%; top: 15%; transform: translateX(-100%); }
+            .ketupat:nth-child(3) {
+                width: 70px;
+                height: 70px;
+            }
+            .ketupat-container {
+                gap: 10px;
+                top: 3%;
+            }
             
             h1 {
                 font-size: 2em;
