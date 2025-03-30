@@ -19,6 +19,20 @@
             transition: background 1s ease-in-out;
         }
         
+        body.lebaran-bg {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        body.lebaran-bg.laptop {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('gambar-lebaran-laptop.jpg');
+        }
+        
+        body.lebaran-bg.mobile {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('gambar-lebaran-mobile.jpg');
+        }
+
         .container {
             text-align: center;
             color: white;
@@ -56,29 +70,178 @@
             color: #ff3e3e;
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: pulse 0.8s infinite alternate, colorChange 3s infinite;
+            animation: 
+                pulse 0.8s infinite alternate,
+                colorChange 3s infinite;
             transform-origin: center;
             margin-top: 2px;
             line-height: 1;
         }
 
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        
+        @keyframes colorChange {
+            0% { color: #ff3e3e; }
+            25% { color: #ff6b6b; }
+            50% { color: #ff9e3e; }
+            75% { color: #ff6b6b; }
+            100% { color: #ff3e3e; }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+            75% { transform: rotate(-3deg); }
+        }
+        
+        h1 {
+            font-size: 3.5em;
+            animation: fadeIn 3s ease-in-out;
+        }
+        
+        p {
+            font-size: 1.5em;
+            animation: slideIn 3s ease-in-out;
+            line-height: 1.5;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* FORMASI KETUPAT MELENGKUNG KE BAWAH DI TENGAH SEMPURNA */
         .ketupat-container {
             position: fixed;
-            top: 20%;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 10%;
+            left: 0;
+            width: 100%;
+            height: 25%;
             display: flex;
             justify-content: center;
-            gap: 15px;
             z-index: 1;
         }
         
         .ketupat {
+            position: absolute;
             width: 80px;
             height: 80px;
             animation: swing 3s ease-in-out infinite;
             filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
             object-fit: contain;
+        }
+        
+        /* Posisi melengkung ke bawah sempurna di tengah */
+        .ketupat:nth-child(1) { 
+            left: 30%; 
+            top: 5%;
+            transform: translateX(-50%) rotate(-10deg);
+            animation-delay: 0.1s;
+        }
+        .ketupat:nth-child(2) { 
+            left: 40%; 
+            top: 10%;
+            transform: translateX(-50%) rotate(-5deg);
+            animation-delay: 0.3s;
+        }
+        .ketupat:nth-child(3) { 
+            left: 50%; 
+            top: 15%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            animation-delay: 0s;
+            z-index: 2;
+        }
+        .ketupat:nth-child(4) { 
+            left: 60%; 
+            top: 10%;
+            transform: translateX(-50%) rotate(5deg);
+            animation-delay: 0.7s;
+        }
+        .ketupat:nth-child(5) { 
+            left: 70%; 
+            top: 5%;
+            transform: translateX(-50%) rotate(10deg);
+            animation-delay: 0.9s;
+        }
+
+        @keyframes swing {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        @media (max-width: 768px) {
+            .ketupat {
+                width: 60px;
+                height: 60px;
+            }
+            .ketupat:nth-child(3) {
+                width: 80px;
+                height: 80px;
+            }
+            .ketupat:nth-child(1) { left: 25%; top: 3%; }
+            .ketupat:nth-child(2) { left: 37%; top: 8%; }
+            .ketupat:nth-child(3) { top: 12%; }
+            .ketupat:nth-child(4) { left: 63%; top: 8%; }
+            .ketupat:nth-child(5) { left: 75%; top: 3%; }
+            
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            p {
+                font-size: 1.2em;
+            }
+            
+            .envelope {
+                width: 150px;
+            }
+            
+            .open-text {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ketupat {
+                width: 50px;
+                height: 50px;
+            }
+            .ketupat:nth-child(3) {
+                width: 70px;
+                height: 70px;
+            }
+            .ketupat:nth-child(1) { left: 20%; top: 2%; }
+            .ketupat:nth-child(2) { left: 35%; top: 6%; }
+            .ketupat:nth-child(3) { top: 10%; }
+            .ketupat:nth-child(4) { left: 65%; top: 6%; }
+            .ketupat:nth-child(5) { left: 80%; top: 2%; }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            p {
+                font-size: 1em;
+            }
+            
+            .envelope {
+                width: 120px;
+            }
+            
+            .open-text {
+                font-size: 1.3em;
+            }
         }
     </style>
 </head>
@@ -104,19 +267,39 @@
     </div>
     
     <script>
+        document.getElementById("bg-music").pause();
+        
+        function setBackground() {
+            const body = document.getElementById("body");
+            body.classList.add("lebaran-bg");
+            
+            if (window.innerWidth >= 768) {
+                body.classList.add("laptop");
+                body.classList.remove("mobile");
+            } else {
+                body.classList.add("mobile");
+                body.classList.remove("laptop");
+            }
+        }
+        
         function openLetter() {
             let envelope = document.getElementById("envelope");
+            envelope.classList.remove("shake");
             envelope.classList.add("open");
 
             setTimeout(() => {
                 document.getElementById("envelopeContainer").style.display = "none";
                 document.getElementById("messageContainer").style.display = "block";
                 document.getElementById("bg-music").play();
+                setBackground();
                 generateKetupat();
             }, 500);
         }
         
         function generateKetupat() {
+            const oldContainer = document.querySelector('.ketupat-container');
+            if (oldContainer) oldContainer.remove();
+            
             const container = document.createElement("div");
             container.className = "ketupat-container";
             
