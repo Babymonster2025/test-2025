@@ -26,11 +26,11 @@
         }
         
         body.lebaran-bg.laptop {
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://i.imgur.com/J5Z2Q0a.jpg');
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('gambar-lebaran-laptop.jpg');
         }
         
         body.lebaran-bg.mobile {
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://i.imgur.com/J5Z2Q0a.jpg');
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('gambar-lebaran-mobile.jpg');
         }
 
         .container {
@@ -119,7 +119,7 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
-        /* FORMASI KETUPAT YANG SUDAH DIPERBAIKI */
+        /* FORMASI KETUPAT YANG DIPERBAIKI */
         .ketupat-container {
             position: fixed;
             top: 5%;
@@ -127,8 +127,6 @@
             width: 100%;
             height: 25%;
             z-index: 1;
-            display: flex;
-            justify-content: center;
         }
         
         .ketupat {
@@ -140,11 +138,11 @@
             object-fit: contain;
         }
         
-        /* Posisi ketupat yang sudah diperbaiki */
+        /* Posisi melengkung dengan ketupat tengah yang sempurna */
         .ketupat:nth-child(1) { 
             left: 10%; 
             top: 15%;
-            transform: translateY(0) rotate(-15deg);
+            transform: translateY(0) rotate(-10deg);
             animation-delay: 0.1s;
         }
         .ketupat:nth-child(2) { 
@@ -156,11 +154,10 @@
         .ketupat:nth-child(3) { 
             left: 50%; 
             top: 20%;
-            transform: translateX(-50%) translateY(10px);
+            transform: translateX(-50%) translateY(8px) rotate(0deg);
             width: 100px;
             height: 100px;
             animation-delay: 0s;
-            z-index: 2;
         }
         .ketupat:nth-child(4) { 
             right: 30%; 
@@ -171,13 +168,13 @@
         .ketupat:nth-child(5) { 
             right: 10%; 
             top: 15%;
-            transform: translateY(0) rotate(15deg);
+            transform: translateY(0) rotate(10deg);
             animation-delay: 0.9s;
         }
 
         @keyframes swing {
             0%, 100% { transform: translateY(0) rotate(-5deg); }
-            50% { transform: translateY(-15px) rotate(5deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
         }
 
         @media (max-width: 768px) {
@@ -246,22 +243,22 @@
     </style>
 </head>
 <body id="body">
-    <audio id="bg-music" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+    <audio id="bg-music" autoplay loop>
+        <source src="ramadan-happy-eid-celebration-301946.mp3" type="audio/mp3">
         Browsermu tidak mendukung elemen audio.
     </audio>
     
     <div class="envelope-container" id="envelopeContainer">
-        <img src="https://i.imgur.com/3JQY7hq.png" class="envelope" id="envelope" onclick="openLetter()" alt="Surat">
-        <p class="open-text">Klik amplopnya dong!</p>
+        <img src="surat.jpg" class="envelope" id="envelope" onclick="openLetter()" alt="Surat">
+        <p class="open-text">SAYA MARAHHH NIII😁</p>
     </div>
     
     <div class="container" id="messageContainer">
         <h1>Selamat Idul Fitri</h1>
-        <p>Minal aidin wal faidzin<br>
-        Mohon maaf lahir dan batin<br>
-        Semoga berkah selalu menyertai kita<br>
-        Selamat Hari Raya Idul Fitri 1445 H</p>
+        <p>Minta THR nya dongggg😁<br>
+        Ingpokan perholiday an. <br>
+        Cihuyyyyy. <br>
+        Selamat Idul Fitri!</p>
     </div>
     
     <script>
@@ -288,7 +285,7 @@
             setTimeout(() => {
                 document.getElementById("envelopeContainer").style.display = "none";
                 document.getElementById("messageContainer").style.display = "block";
-                document.getElementById("bg-music").play().catch(e => console.log("Autoplay prevented:", e));
+                document.getElementById("bg-music").play();
                 setBackground();
                 generateKetupat();
             }, 500);
@@ -304,7 +301,7 @@
             for (let i = 0; i < 5; i++) {
                 const ketupat = document.createElement("img");
                 ketupat.className = "ketupat";
-                ketupat.src = "https://i.imgur.com/9ZQZQ9Q.png";
+                ketupat.src = "ketupat.jpg";
                 ketupat.alt = "Ketupat Lebaran";
                 container.appendChild(ketupat);
             }
